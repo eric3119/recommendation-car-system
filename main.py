@@ -10,12 +10,12 @@ def realMoneyMask(my_value):
 def printCar(arr, car_name):
     i = arr.index(car_name)
     info = features[i]
-    value = realMoneyMask(info[0])
+    value = realMoneyMask(original_prices[i])
     brand = brands[info[1]]
     fuel_t = fuel[info[2]]
     transmission_t = transmissions[info[3]]
     cylinder_t = cylinder_cap[info[4]]
-    doors = info[5]
+    doors_str = doors[info[5]]
 
     print(f'Modelo: {brand} {car_name[0]}')
     print(f'Valor: R$ {value}')
@@ -23,7 +23,7 @@ def printCar(arr, car_name):
     print(f'Tipo de Combustível: {fuel_t}')
     print(f'Transmissão: {transmission_t}')
     print(f'Cilindradas: {cylinder_t}')
-    print(f'Portas: {doors} Portas')
+    print(f'Portas: {doors_str}')
 
 def getMenuOption(str, arr):
     print()
@@ -36,15 +36,15 @@ def getMenuOption(str, arr):
 """
 - Preco
 - Marcas
-    1 Citroen
-    2 Ford
-    3 Chevrolet
-    4 Honda
-    5 Hyundai
-    6 Peugeot
-    7 Renault
-    8 Toyota
-    9 Volkswagen
+    0 Citroen
+    1 Ford
+    2 Chevrolet
+    3 Honda
+    4 Hyundai
+    5 Peugeot
+    6 Renault
+    7 Toyota
+    8 Volkswagen
 - Gasolina
     0 Gasolina
     1 Flex
@@ -60,6 +60,51 @@ def getMenuOption(str, arr):
     0 2 Portas
     1 4 Portas
 """
+
+original_prices = [
+    46910,
+    38301,
+    17343,
+    33006,
+    102839,
+    135981,
+    14857,
+    68958,
+    75435,
+    58161,
+    37282,
+    68388,
+    21081,
+    43646,
+    92344,
+    60589,
+    39022,
+    17321,
+    58568,
+    63811,
+    43155,
+    29383,
+    81599,
+    86368,
+    26646,
+    136094,
+    17727,
+    21125,
+    122549,
+    76600
+]
+
+prices_categ = [
+    "Entre 10.000 e 20.000", # 0, [10000, 20000)
+    "Entre 20.000 e 30.000", # 1, [20000, 30000)
+    "Entre 30.000 e 40.000", # 2, [30000, 40000)
+    "Entre 40.000 e 50.000", # 3, [40000, 50000)
+    "Entre 50.000 e 60.000", # 4, [50000, 60000)
+    "Entre 60.000 e 70.000", # 5, [60000, 70000)
+    "Entre 70.000 e 80.000", # 6, [70000, 80000)
+    "Entre 80.000 e 90.000", # 7, [80000, 90000)
+    "Acima de 90.000"        # 8, > 90000
+]
 
 brands = [
     "Citroen",
@@ -79,36 +124,36 @@ cylinder_cap = ["1.4", "1.6", "1.8", "2.0"]
 doors = ["2 Portas", "4 Portas"]
 
 features = [
-    [46910,  1, 1, 1, 1, 1],
-    [38301,  1, 1, 0, 1, 1],
-    [17343,  1, 0, 0, 3, 1],
-    [33006,  1, 0, 1, 3, 1],
-    [102839, 1, 0, 1, 1, 1],
-    [135981, 1, 0, 1, 1, 1],
-    [14857,  1, 0, 1, 1, 1],
-    [68958,  2, 1, 1, 1, 1],
-    [75435,  3, 1, 1, 2, 1],
-    [58161,  3, 1, 1, 0, 1],
-    [37282,  3, 1, 1, 1, 1],
-    [68388,  3, 1, 1, 2, 1],
-    [21081,  3, 0, 0, 3, 1],
-    [43646,  4, 1, 1, 0, 1],
-    [92344,  4, 1, 1, 2, 1],
-    [60589,  5, 1, 1, 1, 1],
-    [39022,  5, 0, 1, 3, 1],
-    [17321,  6, 1, 1, 1, 1],
-    [58568,  6, 1, 1, 1, 1],
-    [63811,  6, 0, 1, 1, 1],
-    [43155,  6, 0, 0, 3, 0],
-    [29383,  6, 0, 1, 3, 1],
-    [81599,  6, 1, 1, 1, 1],
-    [86368,  6, 0, 1, 1, 1],
-    [26646,  6, 0, 1, 3, 1],
-    [136094, 6, 0, 1, 1, 0],
-    [17727,  7, 1, 1, 1, 1],
-    [21125,  7, 1, 1, 1, 1],
-    [122549, 8, 0, 1, 2, 1],
-    [76600,  9, 0, 0, 0, 1]
+    [3, 0, 1, 1, 1, 1],
+    [2, 0, 1, 0, 1, 1],
+    [0, 0, 0, 0, 3, 1],
+    [2, 0, 0, 1, 3, 1],
+    [8, 0, 0, 1, 1, 1],
+    [8, 0, 0, 1, 1, 1],
+    [0, 0, 0, 1, 1, 1],
+    [5, 1, 1, 1, 1, 1],
+    [6, 2, 1, 1, 2, 1],
+    [4, 2, 1, 1, 0, 1],
+    [2, 2, 1, 1, 1, 1],
+    [5, 2, 1, 1, 2, 1],
+    [1, 2, 0, 0, 3, 1],
+    [3, 3, 1, 1, 0, 1],
+    [8, 3, 1, 1, 2, 1],
+    [5, 4, 1, 1, 1, 1],
+    [2, 4, 0, 1, 3, 1],
+    [0, 5, 1, 1, 1, 1],
+    [4, 5, 1, 1, 1, 1],
+    [5, 5, 0, 1, 1, 1],
+    [3, 5, 0, 0, 3, 0],
+    [1, 5, 0, 1, 3, 1],
+    [7, 5, 1, 1, 1, 1],
+    [7, 5, 0, 1, 1, 1],
+    [1, 5, 0, 1, 3, 1],
+    [8, 5, 0, 1, 1, 0],
+    [0, 6, 1, 1, 1, 1],
+    [1, 6, 1, 1, 1, 1],
+    [8, 7, 0, 1, 2, 1],
+    [6, 8, 0, 0, 0, 1]
 ]
 
 labels = [
@@ -117,12 +162,12 @@ labels = [
     "RCZ", "LOGAN", "SANDERO", "PRIUS", "JETTA"
 ]
 
-clf = tree.DecisionTreeClassifier()
+clf = tree.DecisionTreeClassifier(criterion="entropy")
 clf = clf.fit(features, labels)
 
 if __name__ == '__main__':
     to_predict = [0, 0, 0, 0, 0, 0]
-    to_predict[0] = int(input('Valor (Aproximado): '))
+    to_predict[0] = int(getMenuOption("Valor", prices_categ))
     to_predict[1] = int(getMenuOption("Marca", brands))
     to_predict[2] = int(getMenuOption("Tipo de Combustível", fuel))
     to_predict[3] = int(getMenuOption("Transmissão", transmissions))
