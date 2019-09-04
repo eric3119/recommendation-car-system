@@ -1,4 +1,8 @@
 from sklearn import tree
+from sklearn.tree.export import export_text
+
+import graphviz
+
 
 def realMoneyMask(my_value):
     val = float(my_value)
@@ -123,6 +127,7 @@ transmissions = ["Manual", "Automático"]
 cylinder_cap = ["1.4", "1.6", "1.8", "2.0"] 
 doors = ["2 Portas", "4 Portas"]
 
+features_names = ["Valor", "Ano", "Combustivel", "Marca", "Cilindrada", "Portas"]
 features = [
     [3, 0, 1, 1, 1, 1],
     [2, 0, 1, 0, 1, 1],
@@ -164,6 +169,10 @@ labels = [
 
 clf = tree.DecisionTreeClassifier(criterion="entropy")
 clf = clf.fit(features, labels)
+tree.plot_tree(clf)
+
+r = export_text(clf, feature_names=features_names)
+print(r)
 
 if __name__ == '__main__':
     to_predict = [0, 0, 0, 0, 0, 0]
