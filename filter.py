@@ -20,6 +20,8 @@ for car in data:
             brand = 'Volkswagen'
         elif brand == 'GM - Chevrolet':
             brand = 'Chevrolet'
+        elif brand == 'Citroën':
+            brand = 'Citroen'
 
         result.append([price, year, brand, name])
 
