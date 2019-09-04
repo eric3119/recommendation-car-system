@@ -37,10 +37,12 @@ feature_names = ["Price", "Year"]
 
 
 # Print tree
-def printTree(x):
+def saveTree(filename, x):
 
     r = export_text(x, feature_names=feature_names)
-    print(r)
+
+    with open(filename, 'w') as f:
+        f.write(r)
 
 
 def getMenuOption(str, arr):
@@ -107,7 +109,7 @@ while True:
     print("Marca escolhida: " + brand)
 
     _tree = trainTree(n_features, n_labels)
-    # printTree(_tree)
+    saveTree('last_tree.txt', _tree)
 
     to_predict = [0, 0]
     to_predict[0] = int(input("Valor desejado: "))
