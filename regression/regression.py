@@ -7,6 +7,18 @@
 import pandas as pd
 from sklearn import linear_model
 
+# Marcas:
+    # "Citroen"
+    # "Ford"
+    # "Chevrolet"
+    # "Honda"
+    # "Hyundai"
+    # "Mitsubishi"
+    # "Peugeot"
+    # "Renault"
+    # "Toyota"
+    # "VolksWagen"
+
 features_prov = [
     "marca1",
     "marca2",
