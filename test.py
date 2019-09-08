@@ -14,64 +14,99 @@ def filter(arr):
 table = pd.read_json('nfil.json').to_numpy()
 
 if __name__ == '__main__':
+    new_rec = True
 
-    cosine_sim = []
+    while new_rec:
 
-    # ["Citroen", "Ford", 
-    # "GM - Chevrolet", "Honda", 
-    # "Hyundai", "Mitsubishi", 
-    # "Peugeot", "Renault", 
-    # "Toyota", "VW - VolksWagen"]
+        brands = data['brands']
+        cosine_sim = []
 
-    print()
-    print('[0] Citroen')
-    print('[1] Ford')
-    print('[2] Chevrolet')
-    print('[3] Honda')
-    print('[4] Hyundai')
-    print('[5] Mitsubishi')
-    print('[6] Peugeot')
-    print('[7] Renault')
-    print('[8] Toyota')
-    print('[9] Volkswagen')
-    pre_brand = int(input('Marca: '))
+        # ["Citroen", "Ford", 
+        # "GM - Chevrolet", "Honda", 
+        # "Hyundai", "Mitsubishi", 
+        # "Peugeot", "Renault", 
+        # "Toyota", "VW - VolksWagen"]
 
-    print()
-    print('[_] 1.0')
-    print('[_] 1.2')
-    print('[_] 1.4')
-    print('[_] 1.6')
-    print('[_] 1.8')
-    print('[_] 2.0')
-    print('[_] 2.2')
-    pre_pot = float(input('Cilindradas: '))
+        print()
+        
+        pre_brand = -1
+        pre_pot = -1
+        pre_price = -1
+        pre_year = ""
 
-    print()
-    print('Formato: DD.DDD, Ex: 12.250')
-    pre_price = float(input('Preço: '))
+        for index, brand in enumerate(brands):
+            print(f'[{index}] {brand}')
 
-    print()
-    print('Formato: DDDD, Ex: 2015')
-    pre_year = int(input('Ano: '))
+        while pre_brand < 0 or pre_brand >= len(brands):
+            pre_brand = int(input('Marca: '))
 
-    predict = np.array([pre_brand, pre_pot, pre_price, pre_year])
+        print()
+        print('[_] 1.0')
+        print('[_] 1.2')
+        print('[_] 1.4')
+        print('[_] 1.6')
+        print('[_] 1.8')
+        print('[_] 2.0')
+        print('[_] 2.2')
 
-    for index, row in enumerate(table):
-        a = predict.reshape(1, 4)
-        b = row.reshape(1, 4)
-        cos_sim = cosine_similarity(a, b)
-        res = [index, cos_sim[0][0]]
-        cosine_sim.append(res)
+        while pre_pot != 1.0 and pre_pot != 1.2 and pre_pot != 1.4 and\
+            pre_pot != 1.6 and pre_pot != 1.8 and pre_pot != 2.0 and\
+            pre_pot != 2.2:
+            pre_pot = float(input('Cilindradas: '))
 
-    result = max(cosine_sim, key=filter)
+        print()
+        print('Formato: DDDDD, Ex: 12250 || 25000')
 
-    cif = table[result[0]]
+        while pre_price <= 0:
+            pre_price = float(input('Preço: '))
 
-    print()
-    print('Melhor Opção:')
-    print('Carro:', data['names'][result[0]])
-    print('Marca:', data['brands'][int(cif[1])])
-    print('Ano:', int(cif[0]))
-    print('Preço:', float(cif[2]))
-    print('Cilindradas:', float(cif[3]))
+        print()
+        print('Formato: DDDD, Ex: 2015')
+
+        while len(pre_year) != 4:
+            pre_year = input('Ano: ')
+        
+        pre_year = int(pre_year)
+
+        predict = np.array([pre_brand, pre_pot, pre_price, pre_year])
+
+        for index, row in enumerate(table):
+            a = predict.reshape(1, 4)
+            b = row.reshape(1, 4)
+            cos_sim = cosine_similarity(a, b)
+            res = [index, cos_sim[0][0]]
+            cosine_sim.append(res)
+
+        result = max(cosine_sim, key=filter)
+
+        cif = table[result[0]]
+
+        print()
+
+        print('Melhor Opção:')
+        print('Carro:', data['names'][result[0]])
+        print('Marca:', data['brands'][int(cif[0])])
+        print('Ano:', int(cif[3]))
+        print('Preço:', float(cif[2]))
+        print('Cilindradas:', float(cif[1]))
+
+        # Versão Eric ___________________
+        # print()
+        # print('Melhor Opção:')
+        # print('Carro:', data['names'][result[0]])
+        # print('Marca:', data['brands'][int(cif[1])])
+        # print('Ano:', int(cif[0]))
+        # print('Preço:', float(cif[2]))
+        # print('Cilindradas:', float(cif[3]))
+
+        print()
+        answ = ""
+
+        while answ != "S" and answ != "s" and answ != "N" and answ != "n":
+            answ = input('Deseja realizar uma nova consulta? (S/n) ')
+            if answ == "S" or answ == "s":
+                new_rec = True
+            else:
+                new_rec = False
+
 
