@@ -36,7 +36,7 @@ def trainTree(feat, lab):
 feature_names = ["Price", "Year"]
 
 
-# Print tree
+# Save tree
 def saveTree(filename, x):
 
     r = export_text(x, feature_names=feature_names)

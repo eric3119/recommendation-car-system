@@ -80,13 +80,12 @@ if __name__ == '__main__':
         result = max(cosine_sim, key=filter)
 
         cif = table[result[0]]
-
         print()
 
         print('Melhor Opção:')
         print('Carro:', data['names'][result[0]])
-        print('Marca:', data['brands'][int(cif[0])])
-        print('Ano:', int(cif[3]))
+        print('Marca:', data['brands'][int(cif[3])])
+        print('Ano:', int(cif[0]))
         print('Preço:', float(cif[2]))
         print('Cilindradas:', float(cif[1]))
 
