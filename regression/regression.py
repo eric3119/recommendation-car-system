@@ -46,9 +46,9 @@ if __name__ == '__main__':
         data_aux = data[brands[pre_brand]]
         df = pd.DataFrame(data_aux)
         df.columns = features_name
-        print(df)
+        # print(df)
 
-        reg = linear_model.LinearRegression()
+        reg = linear_model.LinearRegression(fit_intercept=True, normalize=False)
         reg.fit(df[['potencia', 'idade']], df.preco)
 
         while pre_pot < 1:
@@ -57,13 +57,19 @@ if __name__ == '__main__':
         while pre_year < 0:
             pre_year = int(input('Tempo do carro (anos): '))
 
-        # coeficiente de cada feature na equacao de regressao
+        ### coeficiente de cada feature na equacao de regressao
         # print(reg.coef_)
 
-        # constante da equacao
+        ### constante da equacao
         # print(reg.intercept_)
 
         resp = reg.predict([[pre_pot, pre_year]])
+
+        ### Comparar todos
+        # pred = reg.predict(df[['potencia', 'idade']])
+        # compare = pd.DataFrame({'Real': df.preco, 'Estimado': pred.flatten()})
+        # print(compare)
+
         print("\nO preço estimado para essa configuração é R$ %.2f\n" % (resp[0]))
 
         answ = ""
