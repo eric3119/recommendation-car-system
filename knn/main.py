@@ -103,9 +103,9 @@ with open('cars_readable.txt', 'w') as f:
     for car in features:
         f.write("%s\n" % car)
 
-# to_predict = user_input()
+to_predict = user_input()
 #to_predict = [50000.0, 1, 1, 1, 1.5, 2014]
-to_predict = [46910.0, 0, 1, 1, 1.6, 2014]
+#to_predict = [46910.0, 0, 1, 1, 1.6, 2014]
 # print("To predict: ", to_predict)
 
 choose_brand = []
