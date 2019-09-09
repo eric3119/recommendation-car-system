@@ -8,7 +8,7 @@ data = []
 
 # Run filter.py to generate data
 if not os.path.isfile('tree/cars'):
-    os.system("python filter.py")
+    os.system("python tree/filter.py")
 
 # Load data as a list from cars file
 with open('tree/cars', 'rb') as f:
