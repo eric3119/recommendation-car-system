@@ -2,7 +2,7 @@ import json
 import re
 import pickle
 
-with open("carros_pontos.json") as f:
+with open("./carros_pontos.json") as f:
     data = json.load(f)
 
 f.close()
@@ -13,7 +13,7 @@ for car in data:
     price = int(re.sub("[.]*", '', car['preco'][3:-3]))
     year = (int(car['ano_modelo']))
     brand = car['marca']
-    name = car['name']
+    name = car['name'] + " price " + str(price) + " year " + str(year)
 
     if 1950 < year < 2020:
         if brand == 'VW - VolksWagen':
@@ -28,9 +28,9 @@ for car in data:
 
 print(len(result))
 
-with open('cars_readable.txt', 'w') as f:
+with open('tree/cars_readable.txt', 'w') as f:
     for car in result:
         f.write("%s\n" % car)
 
-with open('cars', 'wb') as f:
+with open('tree/cars', 'wb') as f:
     pickle.dump(result, f)

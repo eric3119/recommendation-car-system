@@ -66,6 +66,7 @@ if __name__ == '__main__':
         resp = reg.predict([[pre_pot, pre_year]])
 
         ### Comparar todos
+        # print(reg.score(df[['potencia', 'idade']], df.preco))
         # pred = reg.predict(df[['potencia', 'idade']])
         # compare = pd.DataFrame({'Real': df.preco, 'Estimado': pred.flatten()})
         # print(compare)

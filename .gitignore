@@ -1,8 +1,8 @@
 main.js
-cars
-cars_readable.txt
+tree/cars
+tree/cars_readable.txt
 venv
 .idea
-last_tree.txt
+tree/last_tree.txt
 makefilter.js
 makefilter2.js
