@@ -7,11 +7,11 @@ import os
 data = []
 
 # Run filter.py to generate data
-if not os.path.isfile('tree/cars'):
-    os.system("python tree/filter.py")
+if not os.path.isfile('cars'):
+    os.system("python filter.py")
 
 # Load data as a list from cars file
-with open('tree/cars', 'rb') as f:
+with open('cars', 'rb') as f:
     data = pickle.load(f)
 
 # Split features and labels // Dont use brand
@@ -109,7 +109,7 @@ while True:
     print("Marca escolhida: " + brand)
 
     _tree = trainTree(n_features, n_labels)
-    saveTree('tree/last_tree.txt', _tree)
+    saveTree('last_tree.txt', _tree)
 
     to_predict = [0, 0]
     to_predict[0] = int(input("Valor desejado: "))
