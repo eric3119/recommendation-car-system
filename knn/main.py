@@ -117,7 +117,7 @@ for i in range(len(features)):
         labels_brand.append(labels[i])
 
 pesos = {
-    'w' : [1,1,10000,10000,10000,1]
+    'w': [1, 1, 10000, 1000, 1, 1]
 } 
 
 output = []
