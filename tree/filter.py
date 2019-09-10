@@ -13,7 +13,7 @@ for car in data:
     price = int(re.sub("[.]*", '', car['preco'][3:-3]))
     year = (int(car['ano_modelo']))
     brand = car['marca']
-    name = car['name'] + " price " + str(price) + " year " + str(year)
+    name = car['name'] + " preço " + str(price) + " ano " + str(year)
 
     if 1950 < year < 2020:
         if brand == 'VW - VolksWagen':
